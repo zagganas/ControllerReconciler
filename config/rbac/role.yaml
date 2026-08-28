@@ -1,0 +1,47 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - config.zagganas.com
+  resources:
+  - controllers
+  - states
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - config.zagganas.com
+  resources:
+  - controllers/finalizers
+  - states/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - config.zagganas.com
+  resources:
+  - controllers/status
+  - states/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - core.dynamic.zagganas.com
+  resources:
+  - dynamicmessagejobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch

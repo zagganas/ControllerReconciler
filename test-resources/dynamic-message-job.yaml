@@ -1,0 +1,6 @@
+apiVersion: core.dynamic.zagganas.com/v1alpha1
+kind: DynamicMessageJob
+metadata:
+  name: "test-dyn-message-job"
+spec:
+  message: "hello"

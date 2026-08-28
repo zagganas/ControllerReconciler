@@ -1,0 +1,27 @@
+apiVersion: config.zagganas.com/v1alpha1
+kind: Controller
+metadata:
+  name: "dynamic-message-job"
+spec:
+  gvk:
+    group: core.dynamic.zagganas.com
+    version: v1alpha1
+    kind: DynamicMessageJob
+  # components: []
+  components:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: myapp
+      namespace: default
+    spec: |
+      data:
+        key: value
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: myapp2
+    spec: |
+      data:
+        key: value
+    

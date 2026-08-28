@@ -1,0 +1,9 @@
+apiVersion: zagganas.com.zagganas.com/v1alpha1
+kind: Controller
+metadata:
+  labels:
+    app.kubernetes.io/name: controllerreconciler
+    app.kubernetes.io/managed-by: kustomize
+  name: controller-sample
+spec:
+  # TODO(user): Add fields here

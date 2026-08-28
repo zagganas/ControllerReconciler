@@ -1,0 +1,82 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.21.0
+  name: states.config.zagganas.com
+spec:
+  group: config.zagganas.com
+  names:
+    kind: State
+    listKind: StateList
+    plural: states
+    singular: state
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: State is the Schema for the controllers API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: spec defines the desired state of State
+            properties:
+              active:
+                default: false
+                description: Denotes whether the controller is active or not
+                type: boolean
+              group:
+                description: Add validation
+                type: string
+              hash:
+                default: ""
+                description: |-
+                  Hash defines the hash of the previous version
+                  If this has changed, then the operator needs to restart
+                type: string
+              kind:
+                type: string
+              version:
+                type: string
+            required:
+            - group
+            - kind
+            - version
+            type: object
+          status:
+            description: status defines the observed state of State
+            properties:
+              lastTransitionTime:
+                default: 0
+                description: |-
+                  LastTransitionTime records the time (in Unix timestamp)
+                  that the state was last updated.
+                  It is used to see if the state is stale after operator restart
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
